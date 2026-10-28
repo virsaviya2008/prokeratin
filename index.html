@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROKERATIN STUDIO — кератин и ботокс для волос в Минске</title>
+<meta name="description" content="Кератин, ботокс и НЕкератин для волос в Минске. Подбор процедуры и расчёт стоимости по анкете. Пр-т Победителей, 31, 9 этаж, офис 914. Запись в Telegram.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500&family=Golos+Text:wght@400;500;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --milk:#F3EFEA; --paper:#FBF9F6; --ink:#141210; --text:#4A433E; --muted:#8D847C;
+    --mocha:#5E4535; --latte:#CDB49C; --line:#DED6CD; --max:1240px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Golos Text",system-ui,sans-serif;color:var(--text);background:var(--milk);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{display:block;width:100%;height:100%;object-fit:cover;background:#E4DCD3}
+  a{color:inherit;text-decoration:none}
+  button,input,select,textarea{font:inherit;color:inherit}
+  button{cursor:pointer}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+  section{padding:120px 0;scroll-margin-top:70px}
+  .display{font-family:Unbounded,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:-.02em;line-height:.98;color:var(--ink)}
+  .it{font-family:"Playfair Display",serif;font-style:italic;text-transform:none;letter-spacing:0;font-weight:400;color:var(--mocha)}
+  .kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:flex;gap:14px;align-items:center}
+  .kicker::before{content:"";width:28px;height:1px;background:var(--muted)}
+  h2.display{font-size:clamp(34px,4.6vw,64px);margin-top:20px}
+  .btn{display:inline-flex;align-items:center;gap:14px;padding:18px 26px;background:var(--ink);color:var(--milk);font-size:14px;font-weight:500;border:1px solid var(--ink);transition:background .25s,color .25s}
+  .btn span{transition:transform .25s}
+  .btn:hover{background:var(--mocha);border-color:var(--mocha)}
+  .btn:hover span{transform:translateX(4px)}
+  .btn.ghost{background:transparent;color:var(--ink)}
+  .btn.ghost:hover{background:var(--ink);color:var(--milk)}
+
+  /* шапка */
+  header{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+  header.solid{background:rgba(243,239,234,.92);backdrop-filter:blur(10px);border-color:var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px;gap:28px}
+  .logo{font-family:Unbounded,sans-serif;font-weight:500;font-size:17px;letter-spacing:.12em;color:var(--ink)}
+  .logo small{font-family:"Golos Text";font-weight:400;font-size:10px;letter-spacing:.3em;color:var(--muted);margin-left:10px}
+  .menu{display:flex;gap:30px;font-size:14px}
+  .menu a{position:relative}
+  .menu a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--ink);transition:width .25s}
+  .menu a:hover::after{width:100%}
+  .nav .btn{padding:12px 18px;font-size:13px}
+  .burger{display:none;background:none;border:0;font-size:22px;color:var(--ink)}
+
+  /* первый экран */
+  .hero{padding:130px 0 0;position:relative}
+  .hero-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:0 24px;align-items:start}
+  .hero h1{grid-column:1/10;grid-row:1;font-size:clamp(44px,7.4vw,118px);position:relative;z-index:2;pointer-events:none}
+  .hero h1 .it{display:inline-block;margin-left:.2em}
+  .hero-photo{grid-column:7/13;grid-row:1/4;align-self:start;margin-top:170px;aspect-ratio:4/5;overflow:hidden;position:relative}
+  .hero-photo::after{content:"кератин на каре · фото для примера";position:absolute;left:14px;bottom:12px;font-size:11px;color:#fff;letter-spacing:.06em;opacity:.85}
+  .hero-text{grid-column:1/6;grid-row:2;padding-top:44px}
+  .hero-text p{font-size:18px;max-width:420px;margin-bottom:34px;color:var(--text)}
+  .hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+  .facts{grid-column:1/6;grid-row:3;display:grid;grid-template-columns:1fr 1fr;gap:0;margin:60px 0 0;border-top:1px solid var(--line)}
+  .facts div{padding:18px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .facts div:nth-child(odd){padding-right:16px;border-right:1px solid var(--line)}
+  .facts div:nth-child(even){padding-left:20px}
+  .facts b{display:block;color:var(--ink);font-weight:500}
+  .ticker{margin-top:110px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);overflow:hidden;white-space:nowrap;background:var(--ink);color:var(--milk)}
+  .ticker div{display:inline-block;padding:16px 0;font-family:Unbounded;font-size:15px;letter-spacing:.14em;animation:tick 32s linear infinite}
+  .ticker span{margin:0 28px;color:var(--latte)}
+  @keyframes tick{to{transform:translateX(-50%)}}
+
+  /* процедуры — список-строки */
+  .proc-head{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;margin-bottom:60px}
+  .proc-head > div:first-child{grid-column:1/8}
+  .proc-head p{grid-column:9/13;align-self:end;color:var(--text)}
+  .proc{border-top:1px solid var(--ink)}
+  .prow{display:grid;grid-template-columns:80px 1.2fr 1.3fr 150px;gap:24px;align-items:center;padding:34px 0;border-bottom:1px solid var(--line);position:relative;transition:background .3s,padding .3s;cursor:default}
+  .prow:hover{background:var(--paper);padding-left:18px;padding-right:18px}
+  .prow .n{font-family:Unbounded;font-size:13px;color:var(--muted)}
+  .prow h3{font-family:Unbounded;font-weight:400;font-size:clamp(22px,2.4vw,34px);text-transform:uppercase;letter-spacing:-.01em;color:var(--ink);line-height:1.05}
+  .prow p{font-size:15px}
+  .prow a{justify-self:end;font-size:13px;font-weight:500;border-bottom:1px solid var(--ink);padding-bottom:2px;white-space:nowrap}
+  .prow .peek{position:absolute;right:190px;top:50%;width:170px;aspect-ratio:3/4;transform:translateY(-50%) rotate(3deg) scale(.9);opacity:0;pointer-events:none;transition:.35s;overflow:hidden;z-index:3;box-shadow:0 30px 60px -30px rgba(20,18,16,.6)}
+  .prow:hover .peek{opacity:1;transform:translateY(-50%) rotate(3deg) scale(1)}
+
+  /* подбор — фирменная фишка */
+  .quiz-sec{background:var(--ink);color:#CFC6BD}
+  .quiz-sec .display{color:var(--milk)}
+  .quiz-sec .it{color:var(--latte)}
+  .quiz-sec .kicker{color:#9C9188}
+  .quiz-sec .kicker::before{background:#9C9188}
+  .quiz{display:grid;grid-template-columns:1fr 380px;gap:48px;margin-top:60px;align-items:start}
+  .q{border-top:1px solid #3A332E;padding:30px 0}
+  .q h4{display:flex;gap:16px;align-items:baseline;font-weight:500;font-size:18px;color:var(--milk);margin-bottom:18px}
+  .q h4 i{font-style:normal;font-family:Unbounded;font-size:12px;color:var(--latte)}
+  .q h4 small{font-weight:400;font-size:13px;color:#8F857C}
+  .opts{display:flex;flex-wrap:wrap;gap:8px}
+  .opts button{border:1px solid #4A423C;background:transparent;color:#E9E2DA;padding:12px 18px;border-radius:999px;font-size:14px;transition:.2s}
+  .opts button:hover{border-color:var(--latte)}
+  .opts button.on{background:var(--milk);color:var(--ink);border-color:var(--milk)}
+  .lengths{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .lengths button{border:1px solid #4A423C;background:transparent;color:#E9E2DA;padding:16px 8px 14px;display:flex;flex-direction:column;align-items:center;gap:12px;font-size:13px;transition:.2s}
+  .lengths button:hover{border-color:var(--latte)}
+  .lengths button.on{background:var(--milk);color:var(--ink);border-color:var(--milk)}
+  .lengths svg{width:44px;height:64px}
+  .lengths svg .hair{fill:var(--latte)}
+  .lengths button.on svg .hair{fill:var(--mocha)}
+  .lengths svg .head,.lengths svg .body{fill:none;stroke:currentColor;stroke-width:1.3;opacity:.75}
+  .ticket{position:sticky;top:96px;background:var(--milk);color:var(--text);padding:30px}
+  .ticket .t-h{font-family:Unbounded;font-size:13px;letter-spacing:.14em;color:var(--ink);text-transform:uppercase;padding-bottom:16px;border-bottom:1px dashed #B9AEA3;margin-bottom:16px}
+  .ticket dl{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;font-size:14px;margin-bottom:20px}
+  .ticket dt{color:var(--muted)}
+  .ticket dd{color:var(--ink);font-weight:500;text-align:right}
+  .ticket .empty-d{color:#B3A99F;font-weight:400}
+  .ticket .hint{font-size:13px;color:var(--muted);margin-bottom:18px}
+  .ticket .btn{width:100%;justify-content:space-between}
+  .ticket .alt{display:flex;justify-content:space-between;gap:10px;margin-top:12px;font-size:13px}
+  .ticket .alt a,.ticket .alt button{border:0;background:none;border-bottom:1px solid var(--ink);padding:0 0 2px;color:var(--ink);font-weight:500}
+  .ticket .copied{font-size:12px;color:var(--mocha);min-height:18px;margin-top:8px}
+  .lead-form{display:none;margin-top:16px;gap:8px}
+  .lead-form.on{display:grid}
+  .lead-form input{padding:14px 16px;border:1px solid var(--line);background:#fff;font-size:15px;outline:none}
+  .lead-form input:focus{border-color:var(--ink)}
+  .consent{display:flex;gap:8px;font-size:12px;color:var(--muted);align-items:flex-start}
+  .consent input{margin-top:3px;accent-color:var(--ink)}
+  .hp{position:absolute;left:-9999px}
+  .done{display:none;padding:10px 0;font-size:15px;color:var(--ink)}
+
+  /* мастера */
+  .masters{display:grid;grid-template-columns:5fr 7fr;gap:60px;align-items:start}
+  .people{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:10px}
+  .person{text-align:left}
+  .ring{width:100%;aspect-ratio:1;border-radius:50%;padding:6px;border:1px solid var(--ink);margin-bottom:16px}
+  .ring div{width:100%;height:100%;border-radius:50%;background:linear-gradient(160deg,#E6DCD1,#CDB49C);display:grid;place-items:center;font-family:Unbounded;font-size:34px;color:var(--paper)}
+  .person b{display:block;color:var(--ink);font-weight:500;font-size:17px}
+  .person small{color:var(--muted);font-size:13px}
+  .top-tech{margin-top:36px;border:1px solid var(--ink);padding:26px 28px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;background:var(--paper)}
+  .top-tech b{display:block;font-family:Unbounded;font-weight:400;font-size:18px;text-transform:uppercase;color:var(--ink)}
+  .top-tech span{font-size:14px}
+
+  /* атмосфера */
+  .mood{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end}
+  .mood .a{grid-column:1/6;aspect-ratio:3/4;overflow:hidden}
+  .mood .b{grid-column:6/9;aspect-ratio:3/4;overflow:hidden;margin-bottom:120px}
+  .mood .t{grid-column:9/13;padding-bottom:20px}
+  .mood .t p{margin:18px 0 26px}
+
+  /* вопросы */
+  .faq{display:grid;grid-template-columns:4fr 8fr;gap:60px}
+  details{border-top:1px solid var(--ink);padding:24px 0}
+  details:last-child{border-bottom:1px solid var(--ink)}
+  summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:24px;font-size:19px;font-weight:500;color:var(--ink)}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font-family:Unbounded;font-weight:300;font-size:24px;line-height:1;transition:transform .3s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details p{margin-top:14px;max-width:640px}
+  details a{border-bottom:1px solid var(--ink)}
+
+  /* контакты */
+  .contact{background:var(--paper)}
+  .c-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+  .c-big{grid-column:1/8}
+  .c-big .display{font-size:clamp(34px,5vw,72px)}
+  .c-list{grid-column:1/8;display:grid;grid-template-columns:1fr 1fr;margin-top:50px;border-top:1px solid var(--ink)}
+  .c-list div{padding:20px 0;border-bottom:1px solid var(--line)}
+  .c-list small{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+  .c-list a,.c-list span{font-size:17px;color:var(--ink);font-weight:500}
+  .c-map{grid-column:8/13;grid-row:1/3;min-height:460px;filter:grayscale(1) contrast(.95);border:1px solid var(--line)}
+  .c-map iframe{width:100%;height:100%;border:0}
+  footer{background:var(--ink);color:#8F857C;font-size:13px;padding:30px 0}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer b{font-family:Unbounded;font-weight:500;letter-spacing:.12em;color:var(--milk)}
+
+  .mbar{display:none}
+  .r{opacity:0;transform:translateY(30px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
+  .r.in{opacity:1;transform:none}
+
+  @media (max-width:980px){
+    section{padding:84px 0}
+    .menu{display:none;position:absolute;top:70px;left:0;right:0;background:var(--milk);flex-direction:column;gap:0;border-bottom:1px solid var(--line)}
+    .menu.open{display:flex}
+    .menu a{padding:16px 28px;border-top:1px solid var(--line)}
+    .burger{display:block}
+    .nav .btn{display:none}
+    header{background:rgba(243,239,234,.92);backdrop-filter:blur(10px)}
+    .hero{padding-top:100px}
+    .hero-grid{display:block}
+    .hero-photo{margin:28px 0 0 18%;aspect-ratio:4/5}
+    .hero-text{padding-top:28px}
+    .facts{margin-top:40px}
+    .ticker{margin-top:70px}
+    .proc-head{display:block}
+    .proc-head p{margin-top:18px}
+    .prow{grid-template-columns:44px 1fr;gap:6px 14px;padding:26px 0}
+    .prow p{grid-column:2}
+    .prow a{grid-column:2;justify-self:start;margin-top:8px}
+    .prow .peek{display:none}
+    .quiz{grid-template-columns:1fr;gap:10px}
+    .lengths{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+    .lengths button{padding:12px 2px 10px;font-size:11px}
+    .lengths svg{width:34px;height:50px}
+    .ticket{position:static}
+    .masters,.faq{grid-template-columns:1fr;gap:34px}
+    .people{gap:14px}
+    .ring div{font-size:24px}
+    .mood{display:block}
+    .mood .a{width:78%}
+    .mood .b{width:56%;margin:-120px 0 0 auto}
+    .mood .t{padding-top:30px}
+    .c-big,.c-list,.c-map{grid-column:1/-1}
+    .c-list{grid-template-columns:1fr}
+    .c-map{grid-row:auto;min-height:280px}
+    .mbar{display:grid;grid-template-columns:1fr 1fr;position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--ink)}
+    .mbar a{padding:17px 10px;text-align:center;color:var(--milk);font-size:14px;font-weight:500}
+    .mbar a:first-child{border-right:1px solid #3A332E}
+    footer{padding-bottom:84px}
+  }
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="wrap nav">
+    <a href="#" class="logo">PROKERATIN<small>STUDIO · MINSK</small></a>
+    <nav class="menu" id="menu">
+      <a href="#procedures">Процедуры</a>
+      <a href="#quiz">Подбор и расчёт</a>
+      <a href="#masters">Мастера</a>
+      <a href="#faq">Вопросы</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a href="https://t.me/m/TfWv6TsNNGY6" target="_blank" rel="noopener" class="btn">Записаться в Telegram <span>→</span></a>
+    <button class="burger" id="burger" aria-label="Меню">☰</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <h1 class="display r">Гладкие волосы, <br>которые <span class="it">слушаются</span></h1>
+    <div class="hero-photo r"><img src="https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=1100&q=80" alt="Гладкие блестящие волосы после процедуры"></div>
+    <div class="hero-text r">
+      <p>Кератин, ботокс и НЕкератин для волос в центре Минска. Подберём процедуру под ваши волосы — ответьте на четыре вопроса, и технолог назовёт стоимость.</p>
+      <div class="hero-actions">
+        <a href="#quiz" class="btn">Подобрать процедуру <span>→</span></a>
+        <a href="https://t.me/m/TfWv6TsNNGY6" target="_blank" rel="noopener" class="btn ghost">Написать в Telegram</a>
+      </div>
+    </div>
+    <div class="facts r">
+      <div><b>Пр-т Победителей, 31</b>9 этаж, офис 914</div>
+      <div><b>Запись</b>в Telegram или Direct</div>
+      <div><b>Юля, Карина, Мария</b>мастера студии</div>
+      <div><b>Топ-технолог</b>запись через @prokeratinby</div>
+    </div>
+  </div>
+  <div class="ticker" aria-hidden="true"><div>
+    КЕРАТИН<span>✦</span>БОТОКС<span>✦</span>НЕКЕРАТИН<span>✦</span>КОМПЛЕКСЫ<span>✦</span>ГЛАДКОСТЬ<span>✦</span>БЛЕСК<span>✦</span>КЕРАТИН<span>✦</span>БОТОКС<span>✦</span>НЕКЕРАТИН<span>✦</span>КОМПЛЕКСЫ<span>✦</span>ГЛАДКОСТЬ<span>✦</span>БЛЕСК<span>✦</span>
+  </div></div>
+</section>
+
+<section id="procedures">
+  <div class="wrap">
+    <div class="proc-head">
+      <div class="r"><div class="kicker">Процедуры</div><h2 class="display">Что мы <span class="it">делаем</span> с&nbsp;волосами</h2></div>
+      <p class="r">Какая процедура подойдёт именно вам, зависит от длины, густоты и состояния волос. Поэтому начинаем с подбора — без угадывания.</p>
+    </div>
+    <div class="proc">
+      <div class="prow r"><span class="n">01</span><h3>Кератин</h3><p>Гладкость и послушность: волосы меньше пушатся, легче укладываются и выглядят ухоженными.</p><a href="#quiz" data-want="Кератин">Подобрать</a>
+        <div class="peek"><img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=500&q=80" alt="" loading="lazy"></div></div>
+      <div class="prow r"><span class="n">02</span><h3>Ботокс</h3><p>Уход и восстановление для сухих и уставших волос — с сохранением естественного объёма.</p><a href="#quiz" data-want="Ботокс">Подобрать</a>
+        <div class="peek"><img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=500&q=80" alt="" loading="lazy"></div></div>
+      <div class="prow r"><span class="n">03</span><h3>НЕкератин</h3><p>Отдельная процедура студии. Чем она отличается от кератина и кому подходит — расскажет технолог.</p><a href="#quiz" data-want="НЕкератин">Подобрать</a>
+        <div class="peek"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80" alt="" loading="lazy"></div></div>
+      <div class="prow r"><span class="n">04</span><h3>Комплексы</h3><p>Сезонные комплексы процедур — актуальные предложения публикуем в Instagram.</p><a href="https://www.instagram.com/prokeratin_studio/" target="_blank" rel="noopener">Смотреть</a>
+        <div class="peek"><img src="https://images.unsplash.com/photo-1580618864180-f6d7d39b8ff6?w=500&q=80" alt="" loading="lazy"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="quiz-sec" id="quiz">
+  <div class="wrap">
+    <div class="kicker r">Подбор и расчёт</div>
+    <h2 class="display r">Узнайте стоимость <span class="it">за&nbsp;минуту</span></h2>
+    <div class="quiz">
+      <div>
+        <div class="q r">
+          <h4><i>01</i>Длина волос</h4>
+          <div class="lengths" id="lengths"></div>
+        </div>
+        <div class="q r">
+          <h4><i>02</i>Густота</h4>
+          <div class="opts" data-key="density" data-single>
+            <button>Тонкие</button><button>Средние</button><button>Густые</button>
+          </div>
+        </div>
+        <div class="q r">
+          <h4><i>03</i>Что беспокоит <small>можно несколько</small></h4>
+          <div class="opts" data-key="worry">
+            <button>Пушатся</button><button>Сухие и ломкие</button><button>После осветления</button><button>Не держат укладку</button><button>Тусклые</button><button>Хочу идеальную гладкость</button>
+          </div>
+        </div>
+        <div class="q r">
+          <h4><i>04</i>Интересует</h4>
+          <div class="opts" data-key="want" data-single>
+            <button>Кератин</button><button>Ботокс</button><button>НЕкератин</button><button>Не знаю — подскажите</button>
+          </div>
+        </div>
+      </div>
+      <aside class="ticket r" id="ticket">
+        <div class="t-h">Запрос технологу</div>
+        <dl id="dl"></dl>
+        <p class="hint">Точную стоимость технолог назовёт по фото волос — приложите его в сообщении.</p>
+        <a class="btn" id="tgBtn" href="https://t.me/m/TfWv6TsNNGY6" target="_blank" rel="noopener">Отправить в Telegram <span>→</span></a>
+        <div class="copied" id="copied"></div>
+        <div class="alt"><button type="button" id="callBack">Лучше перезвоните мне</button><a href="tel:+375333221802">Позвонить</a></div>
+        <form class="lead-form" id="leadForm">
+          <input name="name" placeholder="Ваше имя" required>
+          <input name="phone" type="tel" placeholder="+375 (__) ___-__-__" required>
+          <input class="hp" name="website" tabindex="-1" autocomplete="off">
+          <label class="consent"><input type="checkbox" required> Согласен(на) на обработку персональных данных</label>
+          <button class="btn" type="submit" style="justify-content:space-between">Жду звонка <span>→</span></button>
+        </form>
+        <div class="done" id="done">Спасибо! Технолог свяжется с вами. В рабочей версии сайта заявка с анкетой сразу приходит студии в Telegram.</div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="masters">
+  <div class="wrap masters">
+    <div class="r">
+      <div class="kicker">Мастера</div>
+      <h2 class="display">Руки, которым <span class="it">доверяют</span> волосы</h2>
+      <p style="margin-top:22px;max-width:420px">Работы каждого мастера — в актуальном Instagram студии. Запишитесь к конкретному мастеру или доверьте выбор администратору.</p>
+    </div>
+    <div class="r">
+      <div class="people">
+        <a class="person" href="https://www.instagram.com/prokeratin_studio/" target="_blank" rel="noopener"><div class="ring"><div>Ю</div></div><b>Юля</b><small>мастер студии</small></a>
+        <a class="person" href="https://www.instagram.com/prokeratin_studio/" target="_blank" rel="noopener"><div class="ring"><div>К</div></div><b>Карина</b><small>мастер студии</small></a>
+        <a class="person" href="https://www.instagram.com/prokeratin_studio/" target="_blank" rel="noopener"><div class="ring"><div>М</div></div><b>Мария</b><small>мастер студии</small></a>
+      </div>
+      <div class="top-tech">
+        <div><b>Топ-технолог</b><span>Запись к топ-технологу — только через отдельный аккаунт</span></div>
+        <a class="btn ghost" href="https://www.instagram.com/prokeratinby/" target="_blank" rel="noopener">@prokeratinby <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:20px">
+  <div class="wrap mood">
+    <div class="a r"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=900&q=80" alt="Длинные гладкие волосы" loading="lazy"></div>
+    <div class="b r"><img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=700&q=80" alt="Инструменты мастера" loading="lazy"></div>
+    <div class="t r">
+      <div class="kicker">Атмосфера</div>
+      <h2 class="display" style="font-size:clamp(28px,3vw,42px)">Время <span class="it">для себя</span></h2>
+      <p>Процедура для волос — это пара часов только для вас. Пока работает мастер, можно выпить кофе и никуда не спешить.</p>
+      <a href="https://www.instagram.com/prokeratin_studio/" target="_blank" rel="noopener" class="btn ghost">Смотреть студию в Instagram</a>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap faq">
+    <div class="r"><div class="kicker">Вопросы</div><h2 class="display">Коротко <span class="it">о&nbsp;главном</span></h2></div>
+    <div class="r">
+      <details open><summary>Чем кератин отличается от ботокса?</summary><p>Кератин в первую очередь даёт гладкость и послушность — волосы меньше пушатся и легче укладываются. Ботокс — это прежде всего уход и восстановление, волосы сохраняют естественный объём. Какая процедура нужна вам, технолог подскажет по анкете и фото.</p></details>
+      <details><summary>Можно ли сделать на короткие волосы и каре?</summary><p>Да. Как выглядит кератин на каре, мы показывали в <a href="https://www.instagram.com/prokeratin_studio/" target="_blank" rel="noopener">Instagram</a>.</p></details>
+      <details><summary>Можно ли после окрашивания или осветления?</summary><p>Отметьте это в анкете — технолог учтёт окрашивание при подборе процедуры и подскажет, как лучше её спланировать.</p></details>
+      <details><summary>Сколько держится результат?</summary><p>Это зависит от состояния волос, выбранной процедуры и домашнего ухода. Технолог расскажет, чего ждать именно в вашем случае.</p></details>
+      <details><summary>Как ухаживать за волосами дома?</summary><p>Мастер даст рекомендации после процедуры. А советы по домашнему восстановлению волос мы регулярно публикуем в <a href="https://www.instagram.com/prokeratin_studio/" target="_blank" rel="noopener">Instagram</a>.</p></details>
+      <details><summary>Как записаться?</summary><p>Через анкету на этом сайте, в Telegram или в Direct. Запись к топ-технологу — через аккаунт <a href="https://www.instagram.com/prokeratinby/" target="_blank" rel="noopener">@prokeratinby</a>.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacts">
+  <div class="wrap c-grid">
+    <div class="c-big r"><div class="kicker">Контакты</div><h2 class="display">Пр-т Победителей, 31 <span class="it">·</span> 9&nbsp;этаж</h2></div>
+    <div class="c-list r">
+      <div><small>Адрес</small><span>Минск, пр-т Победителей, 31, этаж 9, офис 914</span></div>
+      <div style="padding-left:20px"><small>Телефон</small><a href="tel:+375333221802">+375 33 322-18-02</a></div>
+      <div><small>Запись</small><a href="https://t.me/m/TfWv6TsNNGY6" target="_blank" rel="noopener">Telegram</a> · <a href="https://www.instagram.com/prokeratin_studio/" target="_blank" rel="noopener">Direct</a></div>
+      <div style="padding-left:20px"><small>Топ-технолог</small><a href="https://www.instagram.com/prokeratinby/" target="_blank" rel="noopener">@prokeratinby</a></div>
+    </div>
+    <div class="c-map r"><iframe src="https://yandex.ru/map-widget/v1/?text=%D0%9C%D0%B8%D0%BD%D1%81%D0%BA%2C%20%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D0%B5%D0%B9%2C%2031&z=16" loading="lazy" title="Карта"></iframe></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><span><b>PROKERATIN</b> STUDIO · Минск</span><span>Демо-концепт сайта · фото для примера</span></div>
+</footer>
+
+<div class="mbar"><a href="tel:+375333221802">Позвонить</a><a href="https://t.me/m/TfWv6TsNNGY6" target="_blank" rel="noopener">Telegram</a></div>
+
+<script>
+// ---------- Анкета подбора ----------
+const LENGTHS = [['Каре', 27], ['До плеч', 38], ['До лопаток', 48], ['Ниже лопаток', 55], ['До пояса', 62]];
+const state = { length: null, density: null, worry: [], want: null };
+document.getElementById('lengths').innerHTML = LENGTHS.map(([t, h], i) => `<button type="button" data-i="${i}">
+  <svg viewBox="0 0 44 64"><path class="body" d="M5 64 C5 47 13 41 22 41 C31 41 39 47 39 64"/><path class="hair" d="M12 19 C11 5 33 5 32 19 L33 ${h} L28 ${h} L28 19 C28 12 16 12 16 19 L16 ${h} L11 ${h} Z"/><circle class="head" cx="22" cy="19" r="7"/></svg>${t}</button>`).join('');
+
+document.getElementById('lengths').addEventListener('click', e => {
+  const b = e.target.closest('[data-i]'); if (!b) return;
+  state.length = LENGTHS[+b.dataset.i][0];
+  document.querySelectorAll('#lengths button').forEach(x => x.classList.toggle('on', x === b));
+  renderTicket();
+});
+document.querySelectorAll('.opts').forEach(group => group.addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  const key = group.dataset.key, val = b.textContent;
+  if ('single' in group.dataset) {
+    state[key] = state[key] === val ? null : val;
+    group.querySelectorAll('button').forEach(x => x.classList.toggle('on', x.textContent === state[key]));
+  } else {
+    state[key] = state[key].includes(val) ? state[key].filter(v => v !== val) : [...state[key], val];
+    b.classList.toggle('on');
+  }
+  renderTicket();
+}));
+
+const ROWS = [['Длина', 'length'], ['Густота', 'density'], ['Беспокоит', 'worry'], ['Интересует', 'want']];
+function val(k) { const v = state[k]; return Array.isArray(v) ? v.join(', ') : v; }
+function renderTicket() {
+  document.getElementById('dl').innerHTML = ROWS.map(([t, k]) =>
+    `<dt>${t}</dt><dd>${val(k) || '<span class="empty-d">не выбрано</span>'}</dd>`).join('');
+}
+function requestText() {
+  return 'Здравствуйте! Хочу подобрать процедуру.\n' + ROWS.filter(([, k]) => val(k)).map(([t, k]) => `${t}: ${val(k)}`).join('\n') + '\nПрикладываю фото волос.';
+}
+renderTicket();
+
+// В Telegram нельзя передать текст по ссылке — копируем анкету, чтобы её осталось вставить
+document.getElementById('tgBtn').addEventListener('click', () => {
+  const t = requestText();
+  if (navigator.clipboard) navigator.clipboard.writeText(t).then(() => {
+    document.getElementById('copied').textContent = 'Анкета скопирована — вставьте её в чат и приложите фото волос.';
+  }).catch(() => {});
+});
+document.getElementById('callBack').addEventListener('click', () => document.getElementById('leadForm').classList.toggle('on'));
+document.getElementById('leadForm').addEventListener('submit', e => {
+  e.preventDefault();
+  // В рабочей версии: fetch на Cloudflare Worker → анкета и телефон приходят студии в Telegram
+  e.target.classList.remove('on'); document.getElementById('done').style.display = 'block';
+});
+
+// кнопки «Подобрать» у процедур сразу отмечают процедуру в анкете
+document.querySelectorAll('[data-want]').forEach(a => a.addEventListener('click', () => {
+  state.want = a.dataset.want;
+  document.querySelectorAll('[data-key="want"] button').forEach(x => x.classList.toggle('on', x.textContent === state.want));
+  renderTicket();
+}));
+
+// ---------- Интерфейс ----------
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}), { threshold: .1 });
+document.querySelectorAll('.r').forEach((el, i) => { el.style.transitionDelay = (i % 3) * 90 + 'ms'; io.observe(el); });
+const header = document.getElementById('top');
+const onScroll = () => header.classList.toggle('solid', scrollY > 40);
+addEventListener('scroll', onScroll); onScroll();
+const menu = document.getElementById('menu');
+document.getElementById('burger').onclick = () => menu.classList.toggle('open');
+menu.querySelectorAll('a').forEach(a => a.onclick = () => menu.classList.remove('open'));
+</script>
+</body>
+</html>
